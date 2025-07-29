@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Page - Produk</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <h1>Daftar Produk</h1>
+
+    <% if (produk && produk.length > 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nama</th>
+          <th>Harga</th>
+          <th>Stok</th>
+          <th>Aksi</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% produk.forEach((item) => { %>
+        <tr>
+          <td><%= item.id %></td>
+          <td><%= item.nama %></td>
+          <td><%= item.harga %></td>
+          <td><%= item.stok %></td>
+          <td>
+            <form method="POST" action="/beli">
+              <input type="hidden" name="produk_id" value="<%= item.id %>" />
+              <input
+                type="number"
+                name="jumlah"
+                min="1"
+                max="<%= item.stok %>"
+                value="1"
+              />
+              <button type="submit">Beli</button>
+            </form>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <% } else { %>
+    <p>Tidak ada produk.</p>
+    <% } %>
+
+    <h2>Riwayat Pembelian</h2>
+    <% if (pembelian && pembelian.length > 0) { %>
+    <ul>
+      <% pembelian.forEach((beli) => { %>
+      <li>
+        Produk: <%= beli.nama %>, Jumlah: <%= beli.jumlah %>, Waktu: <%= new
+        Date(beli.tanggal).toLocaleString('id-ID') %>
+        <form
+          method="POST"
+          action="/batal/<%= beli.id %>"
+          style="display: inline"
+        >
+          <button type="submit">Batalkan</button>
+        </form>
+      </li>
+      <% }) %>
+    </ul>
+    <% } else { %>
+    <p>Belum ada pembelian.</p>
+    <% } %>
+  </body>
+</html>

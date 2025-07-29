@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Admin Page - Produk</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Manajemen Produk & Pembelian</h1>
+
+      <% if (produk && produk.length > 0) { %>
+      <div class="card">
+        <h2>Daftar Produk</h2>
+        <table class="produk-table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nama</th>
+              <th>Harga</th>
+              <th>Stok</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% produk.forEach((item) => { %>
+            <tr>
+              <td><%= item.id %></td>
+              <td><%= item.nama %></td>
+              <td>Rp <%= item.harga.toLocaleString('id-ID') %></td>
+              <td><%= item.stok %></td>
+              <td>
+                <form method="POST" action="/beli" class="form-inline">
+                  <input
+                    type="hidden"
+                    name="produk_id"
+                    value="<%= item.id %>"
+                  />
+                  <input
+                    type="number"
+                    name="jumlah"
+                    min="1"
+                    max="<%= item.stok %>"
+                    value="1"
+                  />
+                  <button type="submit">Beli</button>
+                </form>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <% } else { %>
+      <p>Tidak ada produk.</p>
+      <% } %>
+
+      <div class="card">
+        <h2>Riwayat Pembelian</h2>
+        <% if (pembelian && pembelian.length > 0) { %>
+        <table class="riwayat-table">
+          <thead>
+            <tr>
+              <th>No</th>
+              <th>Produk</th>
+              <th>Jumlah</th>
+              <th>Tanggal</th>
+              <th>Aksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% pembelian.forEach((beli, index) => { %>
+            <tr>
+              <td><%= index + 1 %></td>
+              <td><%= beli.nama %></td>
+              <td><%= beli.jumlah %></td>
+              <td><%= new Date(beli.tanggal).toLocaleString('id-ID') %></td>
+              <td>
+                <form method="POST" action="/batal/<%= beli.id %>">
+                  <button type="submit" class="batal">Batalkan</button>
+                </form>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>

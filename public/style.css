@@ -1,0 +1,131 @@
+/* === RESET & BASE === */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", "Segoe UI", sans-serif;
+  background: #ecf0f3;
+  color: #2c3e50;
+  padding: 50px;
+  font-size: 15px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #2c3e50;
+}
+
+/* === CONTAINER === */
+.container {
+  max-width: 1000px;
+  margin: auto;
+  padding: 40px 20px;
+}
+
+/* === DASHBOARD GRID === */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* === CARD COMPONENT === */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 40px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+}
+
+.card h2 {
+  font-size: 22px;
+  margin-bottom: 18px;
+  color: #1e8449;
+  border-left: 5px solid #27ae60;
+  padding-left: 12px;
+}
+
+/* === TABLE STYLING === */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  background: #fefefe;
+  border-radius: 12px;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+th,
+td {
+  padding: 12px 14px;
+  text-align: center;
+  border-bottom: 1px solid #ecf0f1;
+}
+
+th {
+  background-color: #d4efdf;
+  color: #145a32;
+  font-weight: 600;
+}
+
+tr:hover {
+  background-color: #f0fdf4;
+}
+
+/* === BUTTON STYLING === */
+button {
+  padding: 10px 22px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  background-color: #27ae60;
+  color: white;
+}
+
+button:hover {
+  background-color: #1e8449;
+}
+
+button.batal {
+  background-color: #e74c3c;
+}
+
+button.batal:hover {
+  background-color: #c0392b;
+}
+
+/* === INLINE FORM ELEMENT === */
+.form-inline input[type="number"] {
+  width: 60px;
+  margin-right: 8px;
+  padding: 6px;
+}
+
+/* === RESPONSIVE DESIGN === */
+@media (max-width: 992px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+    gap: 20px;
+    padding: 0 20px;
+  }
+
+  body {
+    padding: 30px 20px;
+  }
+}

@@ -1,0 +1,36 @@
+<%- include('../partials/header') %>
+
+<div class="container">
+  <h1>Riwayat Pembelian</h1>
+
+  <% if (pembelianList.length === 0) { %>
+  <div class="card empty">
+    <p>Tidak ada riwayat pembelian.</p>
+  </div>
+  <% } else { %>
+  <div class="card">
+    <table class="riwayat-table">
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>Produk</th>
+          <th>Jumlah</th>
+          <th>Tanggal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% pembelianList.forEach((p, i) => { %>
+        <tr>
+          <td><%= i + 1 %></td>
+          <td><%= p.nama %></td>
+          <td><%= p.jumlah %></td>
+          <td><%= new Date(p.tanggal).toLocaleString('id-ID') %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>
